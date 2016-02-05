@@ -70,21 +70,54 @@ angular.module('confusionApp')
 
         .controller('DishCommentController', ['$scope', function ($scope) {
 
-                $scope.mycomment = {rating: 5, comment: "", author: "", date: ""};
+                //Step 1: Create a JavaScript object to hold the comment from the form
+                $scope.comment = {
+                    author: "",
+                    date: "",
+                    rating: 5,
+                    comment: ""
+                };
+                var ratings = [
+                    {value: 1},
+                    {value: 2},
+                    {value: 3},
+                    {value: 4},
+                    {value: 5}
+                ];
+                $scope.ratings = ratings;
 
                 $scope.submitComment = function () {
-                    $scope.mycomment.date = new Date().toISOString();
-                    console.log($scope.mycomment);
-                    $scope.dish.comments.push($scope.mycomment);
+                    //Step 2: This is how you record the date
+                    $scope.comment.date = new Date().toISOString();
+                    // Step 3: Push your comment into the dish's comment array
+                    $scope.dish.comments.push($scope.comment);
+                    //Step 4: reset your form to pristine
                     $scope.commentForm.$setPristine();
-                    $scope.mycomment = {rating: 5, comment: "", author: "", date: ""};
+                    //Step 5: reset your JavaScript object that holds your comment                    
+                    $scope.comment = {
+                        author: "",
+                        date: "",
+                        rating: 5,
+                        comment: ""
+                    };
                 };
+
+// WITH MISSES FROM THE COURSE!!!!
+//                $scope.mycomment = {rating: 5, comment: "", author: "", date: ""};
+//
+//                $scope.submitComment = function () {
+//                    $scope.mycomment.date = new Date().toISOString();
+//                    console.log($scope.mycomment);
+//                    $scope.dish.comments.push($scope.mycomment);
+//                    $scope.commentForm.$setPristine();
+//                    $scope.mycomment = {rating: 5, comment: "", author: "", date: ""};
+//                };
             }])
 
         // implement the IndexController and About Controller here - DONE
 
         .controller('IndexController', ['$scope', 'menuFactory', 'corporateFactory', function ($scope, menuFactory, corporateFactory) {
-                
+
                 var dish = menuFactory.getDish(0);
                 $scope.dish = dish;
 
