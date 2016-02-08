@@ -7,24 +7,30 @@
             <h3 align=center>Our Lipsmacking Culinary Creations</h3>
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
+            <div ng-if="!showDish">
+                <h3>{{message}}</h3>
+            </div>
+            <div class="media" ng-if="showDish">
 
-            <ul class="media-list tab-pane">
-                <li class="media">
-                    <div class="media-left media-middle">
-                        <a data-ui-sref="app.dishdetails({id: dish._id})">
-                            <img class="media-object img-thumbnail"
-                                 ng-src={{dish.image}} alt="{{dish.name}}">
-                        </a>
-                    </div>
-                    <div class="media-body">
-                        <h2 class="media-heading">{{dish.name}}
-                            <span class="label label-danger label-xs">{{dish.label}}</span>
-                            <span class="badge">{{dish.price| currency}}</span>
-                        </h2>
-                        <p>{{dish.description}}</p>   
-                    </div>
-                </li>
-            </ul>
+                <ul class="media-list tab-pane">
+                    <li class="media">
+                        <div class="media-left media-middle">
+                            <a data-ui-sref="app.dishdetails({id: dish.id})">
+                                <img class="media-object img-thumbnail"
+                                     ng-src={{dish.image}} alt="{{dish.name}}">
+                            </a>
+                        </div>
+                        <div class="media-body">
+                            <h2 class="media-heading">{{dish.name}}
+                                <span class="label label-danger label-xs">{{dish.label}}</span>
+                                <span class="badge">{{dish.price| currency}}</span>
+                            </h2>
+                            <p>{{dish.description}}</p>   
+                        </div>
+                    </li>
+                </ul>
+
+            </div>
 
         </div>
     </div>
@@ -37,7 +43,11 @@
         </div>
         <div class="col-xs-12 col-sm-9">
 
-            <ul class="media-list tab-pane">
+            <div ng-if="!showPromoDish">
+                <h3>{{messagePromo}}</h3>
+            </div>
+
+            <ul class="media-list tab-pane" ng-if="showPromoDish">
                 <li class="media">                    
                     <div class="media-body">
                         <h2 class="media-heading">{{promoDish.name}}
@@ -64,19 +74,24 @@
             <h3 align=center>Meet our Culinary Specialists</h3>
         </div>
         <div class="col-xs-12 col-sm-9 col-sm-pull-3">
-            <ul class="media-list tab-pane">
+
+            <div ng-if="!showExecutive">
+                <h3>{{messageExecutive}}</h3>
+            </div>
+
+            <ul class="media-list tab-pane" ng-if="showExecutive">
                 <li class="media">
                     <div class="media-left media-middle">
 
                         <img class="media-object img-thumbnail"
-                             ng-src={{leader.image}} alt="{{leader.name}}">
+                             ng-src={{executive.image}} alt="{{executive.name}}">
 
                     </div>
                     <div class="media-body">
-                        <h3 class="media-heading">{{leader.name}}
-                            <span class="small text-muted">{{leader.designation}}</span>                                
+                        <h3 class="media-heading">{{executive.name}}
+                            <span class="small text-muted">{{executive.designation}}</span>                                
                         </h3>
-                        <p>{{leader.description}}</p>   
+                        <p>{{executive.description}}</p>   
                     </div>
                 </li>
             </ul>
